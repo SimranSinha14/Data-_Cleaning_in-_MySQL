@@ -9,7 +9,8 @@ The project aims to clean layoff data, ensuring accuracy and reliability. By rem
    - How I Did It: Used a a "window function" - 'ROW_NUMBER' to give each row a number, like a serial number. Rows with the same company details got the same number.
    - My Logic: If any company had more than one row with the same number, it means there's a duplicate. So, I made a list of those duplicates using the "duplicate_cte".
    - Final Check: I checked my list of duplicates to make sure I was right, making sure the rows with the same number were indeed duplicates.
-``` WITH duplicate_cte as (
+```
+WITH duplicate_cte as (
 SELECT *,
 ROW_NUMBER() OVER(
 PARTITION BY company,location,industry,total_laid_off,percentage_laid_off,`date`, stage, country,
@@ -26,7 +27,8 @@ where row_num > 1;
   - Task 1: Removing Extra Spaces
     - What I Did: Noticed some extra spaces hanging around company names.
     - Action Taken: Used a  SQL command -TRIM() to trim those spaces and make everything look clean.
-```SELECT company, (TRIM(company))
+```
+SELECT company, (TRIM(company))
 from layoffs_staging2;
 
 UPDATE layoffs_staging2
@@ -35,7 +37,8 @@ SET company = TRIM(company);
   - Task 2: Correcting Industry Labels
     - The Issue: Some companies were tagged as "Crypto" but not all of them excatly wore the label.
     - The Fix: Updated those companies to make sure they all  belong to the "Crypto" industry
-```SELECT distinct(industry)
+```
+SELECT distinct(industry)
 from layoffs_staging2;
 
 UPDATE layoffs_staging2
@@ -45,7 +48,8 @@ WHERE industry like 'Crypto%';
   - Task 3 : Part 3: Standardizing Country Names
     - The Discovery: Country names should look sharp, but some had unnecessary dots at the end, like a stray pen mark on a clean sheet.
     - The Remedy: We polished these country names by trimming any trailing dots, ensuring they're sleek and consistent.
-```SELECT  country 
+```
+SELECT  country 
 FROM layoffs_staging2;
 
 UPDATE layoffs_staging2
@@ -56,7 +60,8 @@ WHERE country like 'United States%';
     - Objective: Convert date data from string format to the "month/day/year" format using the STR_TO_DATE function.
     - Procedure: Employed the STR_TO_DATE function to convert date strings into the desired format, ensuring uniformity across the dataset.
     - Subsequent Action: Altered the data type of the date column from text to Date to reflect the updated format accurately.
-```SELECT `date`,
+```
+SELECT `date`,
 STR_TO_DATE( `date` , '%m/%d/%Y')
 FROM layoffs_staging2;
 
