@@ -38,7 +38,7 @@ The project aims to clean layoff data, ensuring accuracy and reliability. By rem
     SELECT * 
     FROM layoffs_staging2
     WHERE industry is NULL;
-  ```
+
 
         
           - Filling Null Values with Relevant Data:
