@@ -25,29 +25,10 @@ The project aims to clean layoff data, ensuring accuracy and reliability. By rem
          - Objective: Convert date data from string format to the "month/day/year" format using the STR_TO_DATE function.
          - Procedure: Employed the STR_TO_DATE function to convert date strings into the desired format, ensuring uniformity across the dataset.
          - Subsequent Action: Altered the data type of the date column from text to Date to reflect the updated format accurately.
-   - Step 3: Eliminating Null Values
-         - Identifying Null Values in Industry:
-         - Action: Initially, I scoured the dataset to locate any rows where the industry column was null.
-         - Filling Null Values with Relevant Data:
-          - Insight: Some rows lacked an industry designation, but other rows with the same company had it filled in.
-          - Approach: Utilized a JOIN operation to pair up rows with the same company, where one had a null industry value and the other did not.
-          - Query Executed:
-           
-          - Updating Null Industry Values:
-          - Strategy: Leveraged the paired rows from the previous step to update the null industry values with their corresponding industry.
-          - SQL Command:
-     
-          - Handling Nulls in Other Columns:
-          - Exploration: Investigated rows where both total_laid_off and percentage_laid_off were null.
-          
-         
-          - Removing Rows with Null Values:
-          - Decision: Opted to delete rows where both total_laid_off and percentage_laid_off were null, as they lacked crucial information.
+   
             
      
-           - Final Check:
-           - Verification: Reviewed the dataset post-null removal to ensure all necessary adjustments were made.
-           - Query Executed:
+           
           
 
 
