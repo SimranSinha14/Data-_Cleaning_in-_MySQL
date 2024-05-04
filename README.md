@@ -103,6 +103,32 @@ ON l1.company = l2.company
 SET l1.industry = l2.industry
 WHERE l1.industry is NULL and l2.industry is not null;
 ```
+   - Deleting all null values present in total_laid_off and percentage_laid_off
+```
+SELECT *
+FROM layoffs_staging2 
+WHERE total_laid_off is NULL AND percentage_laid_off is NULL;
+
+DELETE 
+FROM layoffs_staging2 
+WHERE total_laid_off is NULL AND percentage_laid_off is NULL;
+
+SELECT *
+FROM layoffs_staging2;
+```
+   - Removing unwanted columns and rows
+   - We don't need row_num any more
+```
+ALter TABLE layoffs_staging2 
+DROP COLUMN row_num;
+```
+   - Cleaned , structured dataset is available
+```
+SELECT *
+FROM layoffs_staging2;
+```
+ 
+
 
    
             
