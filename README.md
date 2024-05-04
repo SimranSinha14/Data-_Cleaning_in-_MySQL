@@ -9,6 +9,17 @@ The project aims to clean layoff data, ensuring accuracy and reliability. By rem
    - How I Did It: Used a a "window function" - 'ROW_NUMBER' to give each row a number, like a serial number. Rows with the same company details got the same number.
    - My Logic: If any company had more than one row with the same number, it means there's a duplicate. So, I made a list of those duplicates using the "duplicate_cte".
    - Final Check: I checked my list of duplicates to make sure I was right, making sure the rows with the same number were indeed duplicates.
+``` WITH duplicate_cte as (
+SELECT *,
+ROW_NUMBER() OVER(
+PARTITION BY company,location,industry,total_laid_off,percentage_laid_off,`date`, stage, country,
+funds_raised_millions) as row_num
+FROM layoffs_staging
+)
+
+Select *
+from duplicate_cte
+where row_num > 1;
  
    
 - STEP 2 : Standardize the data
