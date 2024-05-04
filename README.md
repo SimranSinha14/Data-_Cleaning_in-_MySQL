@@ -87,6 +87,23 @@ SELECT *
 FROM layoffs_staging2
 WHERE industry is NULL;
 ```
+   - Some rows lacked an industry designation, while other rows with the same company had it filled in.
+   - Approach: Leveraged a JOIN operation to pair up rows with the same company, where one had a null industry value and the other did not. Then, updated the null industry values with the corresponding industry.
+```
+SELECT l1.industry,l2.industry
+FROM layoffs_staging2 l1
+JOIN layoffs_staging2 l2
+ON l1.company = l2.company
+WHERE l1.industry is NULL and l2.industry is not null;
+
+
+UPDATE layoffs_staging2 l1
+JOIN  layoffs_staging2 l2
+ON l1.company = l2.company
+SET l1.industry = l2.industry
+WHERE l1.industry is NULL and l2.industry is not null;
+```
+
    
             
      
