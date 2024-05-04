@@ -29,11 +29,11 @@ The project aims to clean layoff data, ensuring accuracy and reliability. By rem
    - Step 3: Eliminating Null Values
          - Identifying Null Values in Industry:
          - Action: Initially, I scoured the dataset to locate any rows where the industry column was null.
-     ```
+    
      UPDATE layoffs_staging2
      SET industry = null
      WHERE industry = ' ';
-     ```
+     
 
     SELECT * 
     FROM layoffs_staging2
