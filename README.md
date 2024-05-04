@@ -9,6 +9,8 @@ The project aims to clean layoff data, ensuring accuracy and reliability. By rem
    - How I Did It: Used a a "window function" - 'ROW_NUMBER' to give each row a number, like a serial number. Rows with the same company details got the same number.
    - My Logic: If any company had more than one row with the same number, it means there's a duplicate. So, I made a list of those duplicates using the "duplicate_cte".
    - Final Check: I checked my list of duplicates to make sure I was right, making sure the rows with the same number were indeed duplicates.
+ 
+   - ![SQL p2](https://github.com/SimranSinha14/SQL_Project-Data_Cleaning/assets/127465330/f0b33151-ed7c-4f38-ae90-68cfddce390b)
 
 
  
