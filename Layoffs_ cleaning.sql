@@ -1,3 +1,7 @@
+-- SQL Project - Data cleaning
+
+
+
 -- CLEANING DATA
 -- STEP 1. Remove Duplicates
 
