@@ -10,8 +10,7 @@ The project aims to clean layoff data, ensuring accuracy and reliability. By rem
    - My Logic: If any company had more than one row with the same number, it means there's a duplicate. So, I made a list of those duplicates using the "duplicate_cte".
    - Final Check: I checked my list of duplicates to make sure I was right, making sure the rows with the same number were indeed duplicates.
  
-   - ![SQL p2](https://github.com/SimranSinha14/SQL_Project-Data_Cleaning/assets/127465330/f0b33151-ed7c-4f38-ae90-68cfddce390b)
- 
+   
   - STEP 2 : Standardize the data
      - Task 1: Removing Extra Spaces
         - What I Did: Noticed some extra spaces hanging around company names.
@@ -29,19 +28,7 @@ The project aims to clean layoff data, ensuring accuracy and reliability. By rem
    - Step 3: Eliminating Null Values
          - Identifying Null Values in Industry:
          - Action: Initially, I scoured the dataset to locate any rows where the industry column was null.
-    
-     UPDATE layoffs_staging2
-     SET industry = null
-     WHERE industry = ' ';
-     
-
-    SELECT * 
-    FROM layoffs_staging2
-    WHERE industry is NULL;
-
-
-        
-          - Filling Null Values with Relevant Data:
+         - Filling Null Values with Relevant Data:
           - Insight: Some rows lacked an industry designation, but other rows with the same company had it filled in.
           - Approach: Utilized a JOIN operation to pair up rows with the same company, where one had a null industry value and the other did not.
           - Query Executed:
