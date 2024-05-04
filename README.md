@@ -11,6 +11,83 @@ The project aims to clean layoff data, ensuring accuracy and reliability. By rem
    - Final Check: I checked my list of duplicates to make sure I was right, making sure the rows with the same number were indeed duplicates.
  
    - ![SQL p2](https://github.com/SimranSinha14/SQL_Project-Data_Cleaning/assets/127465330/f0b33151-ed7c-4f38-ae90-68cfddce390b)
+ 
+  - STEP 2 : Standardize the data
+     - Task 1: Removing Extra Spaces
+        - What I Did: Noticed some extra spaces hanging around company names.
+        - Action Taken: Used a  SQL command -TRIM() to trim those spaces and make everything look clean.
+     - Task 2: Correcting Industry Labels
+         - The Issue: Some companies were tagged as "Crypto" but not all of them excatly wore the label.
+         - The Fix: Updated those companies to make sure they all  belong to the "Crypto" industry
+     - Task 3 : Part 3: Standardizing Country Names
+         - The Discovery: Country names should look sharp, but some had unnecessary dots at the end, like a stray pen mark on a clean sheet.
+         - The Remedy: We polished these country names by trimming any trailing dots, ensuring they're sleek and consistent.
+     - Task 4 : Standardizing Dates
+         - Objective: Convert date data from string format to the "month/day/year" format using the STR_TO_DATE function.
+         - Procedure: Employed the STR_TO_DATE function to convert date strings into the desired format, ensuring uniformity across the dataset.
+         - Subsequent Action: Altered the data type of the date column from text to Date to reflect the updated format accurately.
+   - Step 3: Eliminating Null Values
+         - Identifying Null Values in Industry:
+         - Action: Initially, I scoured the dataset to locate any rows where the industry column was null.
+         - Query Used: 
+         ```
+          SELECT * 
+          FROM layoffs_staging2
+          WHERE industry IS NULL;
+      ```
+          - Filling Null Values with Relevant Data:
+          - Insight: Some rows lacked an industry designation, but other rows with the same company had it filled in.
+          - Approach: Utilized a JOIN operation to pair up rows with the same company, where one had a null industry value and the other did not.
+          - Query Executed:
+           ```
+          SELECT l1.industry, l2.industry
+          FROM layoffs_staging2 l1
+          JOIN layoffs_staging2 l2
+          ON l1.company = l2.company
+          WHERE l1.industry IS NULL AND l2.industry IS NOT NULL;
+          ```
+         - Updating Null Industry Values:
+            - Strategy: Leveraged the paired rows from the previous step to update the null industry values with their corresponding industry.
+            - SQL Command:
+      ```
+            UPDATE layoffs_staging2 l1
+           JOIN layoffs_staging2 l2
+           ON l1.company = l2.company
+           SET l1.industry = l2.industry
+           WHERE l1.industry IS NULL AND l2.industry IS NOT NULL;
+      ```
+  - Handling Nulls in Other Columns:
+           - Exploration: Investigated rows where both total_laid_off and percentage_laid_off were null.
+           - Query Utilized: 
+          ```
+          SELECT *
+          FROM layoffs_staging2 
+          WHERE total_laid_off IS NULL AND percentage_laid_off IS NULL;
+          ```
+           - Removing Rows with Null Values:
+           - Decision: Opted to delete rows where both total_laid_off and percentage_laid_off were null, as they lacked crucial information.
+           - SQL Deletion Command: 
+         ```
+        DELETE 
+        FROM layoffs_staging2 
+        WHERE total_laid_off IS NULL AND percentage_laid_off IS NULL;
+      ```
+          - Final Check:
+          - Verification: Reviewed the dataset post-null removal to ensure all necessary adjustments were made.
+          - Query Executed:
+          ```
+          SELECT *
+          FROM layoffs_staging2;
+          ```
+
+
+
+
+
+
+        
+    
+
 
 
  
