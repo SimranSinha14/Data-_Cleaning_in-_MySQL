@@ -74,6 +74,19 @@ FROM layoffs_staging2;
 ALTER TABLE layoffs_staging2
 MODIFY COLUMN `date` DATE; 
 ```
+- Step 3 : Removing Null value
+   - Objective: Before addressing null values, I ensured that any blank cells in the dataset were updated to null values.
+   - Explanation: This step aimed to standardize the representation of missing data, ensuring consistency throughout the dataset.
+```
+UPDATE layoffs_staging2
+SET industry = null
+WHERE industry = ' ';
+
+
+SELECT * 
+FROM layoffs_staging2
+WHERE industry is NULL;
+```
    
             
      
