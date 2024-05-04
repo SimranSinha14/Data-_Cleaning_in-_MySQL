@@ -127,6 +127,8 @@ DROP COLUMN row_num;
 SELECT *
 FROM layoffs_staging2;
 ```
+
+![SQL project 1](https://github.com/SimranSinha14/SQL_Project-Data_Cleaning/assets/127465330/4f10992d-a6d3-4fcd-bee2-ae689500c2b0)
  
 
 
