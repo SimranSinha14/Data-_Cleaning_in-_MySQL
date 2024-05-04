@@ -29,56 +29,39 @@ The project aims to clean layoff data, ensuring accuracy and reliability. By rem
    - Step 3: Eliminating Null Values
          - Identifying Null Values in Industry:
          - Action: Initially, I scoured the dataset to locate any rows where the industry column was null.
-         - Query Used: 
-         ```
-          SELECT * 
-          FROM layoffs_staging2
-          WHERE industry IS NULL;
-      ```
+     ```
+     UPDATE layoffs_staging2
+     SET industry = null
+     WHERE industry = ' ';
+
+
+    SELECT * 
+    FROM layoffs_staging2
+    WHERE industry is NULL;
+  ```
+
+        
           - Filling Null Values with Relevant Data:
           - Insight: Some rows lacked an industry designation, but other rows with the same company had it filled in.
           - Approach: Utilized a JOIN operation to pair up rows with the same company, where one had a null industry value and the other did not.
           - Query Executed:
-           ```
-          SELECT l1.industry, l2.industry
-          FROM layoffs_staging2 l1
-          JOIN layoffs_staging2 l2
-          ON l1.company = l2.company
-          WHERE l1.industry IS NULL AND l2.industry IS NOT NULL;
-          ```
-         - Updating Null Industry Values:
-            - Strategy: Leveraged the paired rows from the previous step to update the null industry values with their corresponding industry.
-            - SQL Command:
-      ```
-            UPDATE layoffs_staging2 l1
-           JOIN layoffs_staging2 l2
-           ON l1.company = l2.company
-           SET l1.industry = l2.industry
-           WHERE l1.industry IS NULL AND l2.industry IS NOT NULL;
-      ```
-  - Handling Nulls in Other Columns:
-           - Exploration: Investigated rows where both total_laid_off and percentage_laid_off were null.
-           - Query Utilized: 
-          ```
-          SELECT *
-          FROM layoffs_staging2 
-          WHERE total_laid_off IS NULL AND percentage_laid_off IS NULL;
-          ```
-           - Removing Rows with Null Values:
-           - Decision: Opted to delete rows where both total_laid_off and percentage_laid_off were null, as they lacked crucial information.
-           - SQL Deletion Command: 
-         ```
-        DELETE 
-        FROM layoffs_staging2 
-        WHERE total_laid_off IS NULL AND percentage_laid_off IS NULL;
-      ```
-          - Final Check:
-          - Verification: Reviewed the dataset post-null removal to ensure all necessary adjustments were made.
-          - Query Executed:
-          ```
-          SELECT *
-          FROM layoffs_staging2;
-          ```
+           
+          - Updating Null Industry Values:
+          - Strategy: Leveraged the paired rows from the previous step to update the null industry values with their corresponding industry.
+          - SQL Command:
+     
+          - Handling Nulls in Other Columns:
+          - Exploration: Investigated rows where both total_laid_off and percentage_laid_off were null.
+          
+         
+          - Removing Rows with Null Values:
+          - Decision: Opted to delete rows where both total_laid_off and percentage_laid_off were null, as they lacked crucial information.
+            
+     
+           - Final Check:
+           - Verification: Reviewed the dataset post-null removal to ensure all necessary adjustments were made.
+           - Query Executed:
+          
 
 
 
