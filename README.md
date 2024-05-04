@@ -20,7 +20,7 @@ FROM layoffs_staging
 Select *
 from duplicate_cte
 where row_num > 1;
- 
+```
    
 - STEP 2 : Standardize the data
   - Task 1: Removing Extra Spaces
