@@ -13,18 +13,18 @@ The project aims to clean layoff data, ensuring accuracy and reliability. By rem
    
 - STEP 2 : Standardize the data
   - Task 1: Removing Extra Spaces
-        - What I Did: Noticed some extra spaces hanging around company names.
-        - Action Taken: Used a  SQL command -TRIM() to trim those spaces and make everything look clean.
+    - What I Did: Noticed some extra spaces hanging around company names.
+    - Action Taken: Used a  SQL command -TRIM() to trim those spaces and make everything look clean.
   - Task 2: Correcting Industry Labels
-         - The Issue: Some companies were tagged as "Crypto" but not all of them excatly wore the label.
-         - The Fix: Updated those companies to make sure they all  belong to the "Crypto" industry
+    - The Issue: Some companies were tagged as "Crypto" but not all of them excatly wore the label.
+    - The Fix: Updated those companies to make sure they all  belong to the "Crypto" industry
   - Task 3 : Part 3: Standardizing Country Names
-         - The Discovery: Country names should look sharp, but some had unnecessary dots at the end, like a stray pen mark on a clean sheet.
-         - The Remedy: We polished these country names by trimming any trailing dots, ensuring they're sleek and consistent.
+    - The Discovery: Country names should look sharp, but some had unnecessary dots at the end, like a stray pen mark on a clean sheet.
+    - The Remedy: We polished these country names by trimming any trailing dots, ensuring they're sleek and consistent.
   - Task 4 : Standardizing Dates
-         - Objective: Convert date data from string format to the "month/day/year" format using the STR_TO_DATE function.
-         - Procedure: Employed the STR_TO_DATE function to convert date strings into the desired format, ensuring uniformity across the dataset.
-         - Subsequent Action: Altered the data type of the date column from text to Date to reflect the updated format accurately.
+    - Objective: Convert date data from string format to the "month/day/year" format using the STR_TO_DATE function.
+    - Procedure: Employed the STR_TO_DATE function to convert date strings into the desired format, ensuring uniformity across the dataset.
+    - Subsequent Action: Altered the data type of the date column from text to Date to reflect the updated format accurately.
    
             
      
