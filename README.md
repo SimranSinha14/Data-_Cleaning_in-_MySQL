@@ -33,7 +33,7 @@ The project aims to clean layoff data, ensuring accuracy and reliability. By rem
      UPDATE layoffs_staging2
      SET industry = null
      WHERE industry = ' ';
-
+     ```
 
     SELECT * 
     FROM layoffs_staging2
